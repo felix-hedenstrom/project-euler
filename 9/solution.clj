@@ -21,15 +21,15 @@
   (and (odd? a) (odd? b)))
 
 (defn get-a
-  [n m]
+  [m n]
   (- (* m m) (* n n)))
 
 (defn get-b 
-  [n m]
+  [m n]
   (* 2 m n))
 
 (defn get-c 
-  [n m]
+  [m n]
   (+ (* m m) (* n n)))
 
 (def m
@@ -37,11 +37,10 @@
     (if-let [m (first m-cand)]
       (let [n (n-from-m m)]
         (cond 
-
           (or 
-            (> 1 (get-a n m))
-            (> 1 (get-b n m))
-            (> 1 (get-c n m))) 
+            (> 1 (get-a m n))
+            (> 1 (get-b m n))
+            (> 1 (get-c m n))) 
             (recur (rest m-cand))
           (= (* m (+ m (n-from-m m))) target)
             m 
@@ -51,9 +50,9 @@
 
 (def n (n-from-m m))
 
-(def a (- (* m m) (* n n)))
-(def b (* 2 m n))
-(def c (+ (* m m) (* n n)))
+(def a (get-a m n))
+(def b (get-b m n))
+(def c (get-c m n))
 
 (println a b c)
 (println (- (+ (* a a) (* b b)) (* c c)))
