@@ -10,4 +10,5 @@
   [n]
   (apply + (candidates n)))
 
-(println (modsum 100))
+(assert (= 23 (modsum 10)))
+(println (modsum 1000))
