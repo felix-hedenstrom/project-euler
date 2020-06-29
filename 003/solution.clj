@@ -4,15 +4,13 @@
     a
     (recur b (mod a b))))
 
-(defn f
-  [x n]
-  (-> (* x x)
-      (+ 1)
-      (mod n))) 
-
 (defn pollard-rho
   [n]
-  (let [g #(f % n)]
+  (let [f (fn [x n]
+            (-> (* x x)
+                (inc)
+                (mod n)))
+        g #(f % n)]
     (loop [x (bigint 1)
            y (bigint 2) 
            d (bigint 1)]
@@ -34,8 +32,3 @@
             (/ n factor)
             (conj factors factor))
           factors))))
-
-
-(def factors (all-factors 600851475143))  
-(println factors)
-(println (apply max factors))
