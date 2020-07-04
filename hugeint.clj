@@ -96,3 +96,18 @@
 (assert (= 100 (to-int (mult (hugeint 10) (hugeint 10)))))
 (assert (= 32 (to-int (mult (hugeint 2) (hugeint 16)))))
 (assert (= 9801 (to-int (mult (hugeint 99) (hugeint 99)))))
+
+
+(defn factorial
+  [n]
+  (loop [i 2
+         ans (hugeint 1)]
+    (if (< n i)
+      ans
+      (recur (inc i) (mult ans (hugeint i)))))) 
+
+
+(assert (= 1 (to-int (factorial 1))))
+(assert (= 2 (to-int (factorial 2))))
+(assert (= 6 (to-int (factorial 3))))
+(assert (= 3628800 (to-int (factorial 10))))
