@@ -106,8 +106,15 @@
       ans
       (recur (inc i) (mult ans (hugeint i)))))) 
 
-
 (assert (= 1 (to-int (factorial 1))))
 (assert (= 2 (to-int (factorial 2))))
 (assert (= 6 (to-int (factorial 3))))
 (assert (= 3628800 (to-int (factorial 10))))
+
+(defn pow
+  ; 'a' and 'b' are normal integers but will result in a hugeint
+  [a b]
+  (reduce mult (repeat b (hugeint a))))
+
+
+(assert (= (hugeint 65536) (pow 2 16)))
